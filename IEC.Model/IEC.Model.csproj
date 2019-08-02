@@ -92,6 +92,7 @@
       <LastGenOutput>IECModel.Context.cs</LastGenOutput>
       <DependentUpon>IECModel.edmx</DependentUpon>
     </Content>
+    <Content Include="IECModel.edmx.sql" />
     <Content Include="IECModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IECModel.edmx</DependentUpon>

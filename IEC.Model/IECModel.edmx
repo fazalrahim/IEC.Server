@@ -4,62 +4,61 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IECModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CandidateDocuments">
-          <Key>
-            <PropertyRef Name="CandidateDocumentId" />
-          </Key>
-          <Property Name="CandidateDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DocumentName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="DocumentType" Type="int" Nullable="false" />
-          <Property Name="DocumentSize" Type="int" Nullable="false" />
-          <Property Name="CandidateId" Type="int" Nullable="false" />
-          <Property Name="DocumentPath" Type="nvarchar" MaxLength="500" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Candidates">
-          <Key>
-            <PropertyRef Name="CandidateId" />
-          </Key>
-          <Property Name="CandidateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="DOB" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="City" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Mobile" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Qualification" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="FirstDesiredCourse" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="FirstCountry" Type="int" Nullable="false" />
-          <Property Name="SecondDesiredCourse" Type="nvarchar" MaxLength="250" />
-          <Property Name="SecondCountry" Type="nvarchar" MaxLength="250" />
-          <Property Name="Hear" Type="int" Nullable="false" />
-          <Property Name="IsNew" Type="bit" />
-        </EntityType>
-        <Association Name="FK_CandidateForm_Candidate">
-          <End Role="Candidates" Type="Self.Candidates" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CandidateDocuments" Type="Self.CandidateDocuments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Candidates">
-              <PropertyRef Name="CandidateId" />
-            </Principal>
-            <Dependent Role="CandidateDocuments">
-              <PropertyRef Name="CandidateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="IECModelStoreContainer">
-          <EntitySet Name="CandidateDocuments" EntityType="Self.CandidateDocuments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Candidates" EntityType="Self.Candidates" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CandidateForm_Candidate" Association="Self.FK_CandidateForm_Candidate">
-            <End Role="Candidates" EntitySet="Candidates" />
-            <End Role="CandidateDocuments" EntitySet="CandidateDocuments" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="IECModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="IECModelStoreContainer">
+    <EntitySet Name="CandidateDocuments" EntityType="IECModel.Store.CandidateDocuments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Candidates" EntityType="IECModel.Store.Candidates" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CandidateForm_Candidate" Association="IECModel.Store.FK_CandidateForm_Candidate">
+      <End Role="Candidates" EntitySet="Candidates" />
+      <End Role="CandidateDocuments" EntitySet="CandidateDocuments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CandidateDocuments">
+    <Key>
+      <PropertyRef Name="CandidateDocumentId" />
+    </Key>
+    <Property Name="CandidateDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentName" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="DocumentType" Type="int" Nullable="false" />
+    <Property Name="DocumentSize" Type="int" Nullable="false" />
+    <Property Name="CandidateId" Type="int" Nullable="false" />
+    <Property Name="DocumentPath" Type="nvarchar" Nullable="false" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Candidates">
+    <Key>
+      <PropertyRef Name="CandidateId" />
+    </Key>
+    <Property Name="CandidateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="DOB" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Gender" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Mobile" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Qualification" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="FirstDesiredCourse" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="FirstCountry" Type="int" Nullable="false" />
+    <Property Name="SecondDesiredCourse" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="SecondCountry" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="Hear" Type="int" Nullable="false" />
+    <Property Name="IsNew" Type="bit" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_CandidateForm_Candidate">
+    <End Role="Candidates" Type="IECModel.Store.Candidates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CandidateDocuments" Type="IECModel.Store.CandidateDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidates">
+        <PropertyRef Name="CandidateId" />
+      </Principal>
+      <Dependent Role="CandidateDocuments">
+        <PropertyRef Name="CandidateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -122,44 +121,43 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="IECModelStoreContainer" CdmEntityContainer="IECEntities">
-          <EntitySetMapping Name="CandidateDocuments">
-            <EntityTypeMapping TypeName="IECModel.CandidateDocument">
-              <MappingFragment StoreEntitySet="CandidateDocuments">
-                <ScalarProperty Name="CandidateDocumentId" ColumnName="CandidateDocumentId" />
-                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
-                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
-                <ScalarProperty Name="DocumentSize" ColumnName="DocumentSize" />
-                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
-                <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Candidates">
-            <EntityTypeMapping TypeName="IECModel.Candidate">
-              <MappingFragment StoreEntitySet="Candidates">
-                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
-                <ScalarProperty Name="FirstDesiredCourse" ColumnName="FirstDesiredCourse" />
-                <ScalarProperty Name="FirstCountry" ColumnName="FirstCountry" />
-                <ScalarProperty Name="SecondDesiredCourse" ColumnName="SecondDesiredCourse" />
-                <ScalarProperty Name="SecondCountry" ColumnName="SecondCountry" />
-                <ScalarProperty Name="Hear" ColumnName="Hear" />
-                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IECModelStoreContainer" CdmEntityContainer="IECEntities">
+    <EntitySetMapping Name="CandidateDocuments">
+      <EntityTypeMapping TypeName="IsTypeOf(IECModel.CandidateDocument)">
+        <MappingFragment StoreEntitySet="CandidateDocuments">
+          <ScalarProperty Name="CandidateDocumentId" ColumnName="CandidateDocumentId" />
+          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="DocumentSize" ColumnName="DocumentSize" />
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Candidates">
+      <EntityTypeMapping TypeName="IsTypeOf(IECModel.Candidate)">
+        <MappingFragment StoreEntitySet="Candidates">
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="FirstDesiredCourse" ColumnName="FirstDesiredCourse" />
+          <ScalarProperty Name="FirstCountry" ColumnName="FirstCountry" />
+          <ScalarProperty Name="SecondDesiredCourse" ColumnName="SecondDesiredCourse" />
+          <ScalarProperty Name="SecondCountry" ColumnName="SecondCountry" />
+          <ScalarProperty Name="Hear" ColumnName="Hear" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -173,7 +171,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
