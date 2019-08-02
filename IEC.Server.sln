@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEC.Server", "IEC.Server\IEC.Server.csproj", "{F8B6540E-5165-47C6-885D-391901177021}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEC.Model", "IEC.Model\IEC.Model.csproj", "{A1470A05-8BD6-4778-8221-50CC2D62A6EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8B6540E-5165-47C6-885D-391901177021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B6540E-5165-47C6-885D-391901177021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B6540E-5165-47C6-885D-391901177021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B6540E-5165-47C6-885D-391901177021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1470A05-8BD6-4778-8221-50CC2D62A6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1470A05-8BD6-4778-8221-50CC2D62A6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1470A05-8BD6-4778-8221-50CC2D62A6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1470A05-8BD6-4778-8221-50CC2D62A6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {738753D3-0BA3-4943-94E3-87B40E3E5CD1}
+	EndGlobalSection
+EndGlobal
