@@ -112,7 +112,7 @@ namespace IEC.Server.Controllers
 
 
         [HttpPost]
-        [Route("api/Candidates/UploadImage")]
+        [Route("UploadImage")]
         public IHttpActionResult UploadImage(object formData)
         {
             string imageName = null;
