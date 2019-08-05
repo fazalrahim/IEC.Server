@@ -11,6 +11,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using IEC.Model;
+using System.Web;
+using System.IO;
 
 namespace IEC.Server.Controllers
 {
@@ -108,6 +110,26 @@ namespace IEC.Server.Controllers
             return Ok(candidate);
         }
 
+
+        [HttpPost]
+        [Route("api/Candidates/UploadImage")]
+        public IHttpActionResult UploadImage(object formData)
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            //Upload Image
+            var postedFile = httpRequest.Files["Image"];
+            //Create custom filename
+            if (postedFile != null)
+            {
+                imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+                postedFile.SaveAs(filePath);
+            }
+
+            return Ok();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
