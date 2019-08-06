@@ -113,20 +113,42 @@ namespace IEC.Server.Controllers
 
         [HttpPost]
         [Route("UploadImage")]
-        public IHttpActionResult UploadImage(object formData)
+        public IHttpActionResult UploadImage()
         {
             string imageName = null;
             var httpRequest = HttpContext.Current.Request;
-            //Upload Image
-            var postedFile = httpRequest.Files["Image"];
-            //Create custom filename
-            if (postedFile != null)
+            var httpContext = HttpContext.Current;
+
+            if (httpContext.Request.Files.Count > 0)
             {
-                imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
-                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
-                var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
-                postedFile.SaveAs(filePath);
+                //Loop through uploaded files  
+                for (int i = 0; i < httpContext.Request.Files.Count; i++)
+                {
+                    HttpPostedFile postedFile = httpContext.Request.Files[i];
+                    if (postedFile != null)
+                    {
+                        imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+                        imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                        var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+                        postedFile.SaveAs(filePath);
+                        // Construct file save path  
+                       //var fileSavePath = Path.Combine(HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadFolder"]), httpPostedFile.FileName);
+
+                        // Save the uploaded file  
+                        // httpPostedFile.SaveAs(fileSavePath);
+                    }
+                }
             }
+            ////Upload Image
+            //var postedFile = httpRequest.Files["Image"];
+            ////Create custom filename
+            //if (postedFile != null)
+            //{
+            //    imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+            //    imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+            //    var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+            //    postedFile.SaveAs(filePath);
+            //}
 
             return Ok();
         }
